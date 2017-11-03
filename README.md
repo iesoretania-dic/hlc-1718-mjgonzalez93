@@ -1,4 +1,4 @@
-.checkout
+*Alquila tu vehículo*
 =========
 
-A Symfony project created on November 3, 2017, 10:42 am.
+Aplicacion web para gestionar una empresa de alquiler de vehículos.
