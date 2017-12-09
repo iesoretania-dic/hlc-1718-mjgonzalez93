@@ -88,8 +88,6 @@ class Vehiculo
      */
     private $enReparacion;
 
-
-
     /**
      * Get id
      *

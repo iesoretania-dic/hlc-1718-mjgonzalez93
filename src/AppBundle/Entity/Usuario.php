@@ -93,6 +93,13 @@ class Usuario
      */
     private $cliente;
 
+    /**
+     *
+     */
+    public function __toString()
+    {
+        return $this->getNombre() . ', ' . $this->getApellidos();
+    }
 
 
     /**

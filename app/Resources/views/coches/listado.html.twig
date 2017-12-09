@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Listado Coches{% endblock %}
+{% block content %}
+    <h1>Listado de coches</h1>
+    <table class="table table-responsive table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th class="col-sm-1">Matricula</th>
+            <th class="col-sm-2">Marca y Modelo</th>
+            <th class="col-sm-1">Categoria</th>
+            <th class="col-sm-1">Cilindrada</th>
+            <th class="col-sm-2">Combustible</th>
+            <th class="col-sm-3">Direccion</th>
+            {% if app.user %}
+                <th class="col-sm-2"></th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for coche in coches %}
+            <tr>
+                <td>{{ coche.matricula }}</td>
+                <td>{{ coche.marca }} {{ coche.modelo }}</td>
+                <td>{{ coche.categoria }}</td>
+                <td>{{ coche.cilindrada }} cc</td>
+                <td>{{ coche.combustible }}</td>
+                <td>{{ coche.direccionAlmacenado }}</td>
+                {% if app.user %}
+                    <td>{{ coche.direccionAlmacenado }}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

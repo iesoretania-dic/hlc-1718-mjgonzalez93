@@ -17,6 +17,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li{% if ruta == 'inicio' %} class="active"{% endif %}><a href="{{ path('incio') }}"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li{% if ruta == 'listado_coches' %} class="active"{% endif %}><a href="{{ path('listado_coches') }}"><i class="fa fa-list"></i> Coches</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         {% if app.user %}
