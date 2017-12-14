@@ -19,7 +19,7 @@
         <tbody>
         {% for coche in coches %}
             <tr>
-                <td>{{ coche.matricula }}</td>
+                <td><a href="{{ path('detalle_coche', {'matricula': coche.matricula}) }}">{{ coche.matricula }}</a></td>
                 <td>{{ coche.marca }} {{ coche.modelo }}</td>
                 <td>{{ coche.categoria }}</td>
                 <td>{{ coche.cilindrada }} cc</td>

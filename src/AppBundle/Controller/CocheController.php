@@ -30,4 +30,27 @@ class CocheController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/coche/{matricula}", name="detalle_coche")
+     */
+    public function detalleCocheAction($matricula)
+    {
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+
+        $coches = $em->createQueryBuilder()
+            ->select('p')
+            ->from('AppBundle:Vehiculo', 'p')
+            ->where('p.matricula = :matricula')
+            ->setParameter('matricula', $matricula)
+            ->getQuery()
+            ->getResult();
+
+
+        return $this->render('coches/detalle.html.twig', [
+            'coches' => $coches
+        ]);
+    }
+
+
 }
