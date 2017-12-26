@@ -79,13 +79,6 @@ class Vehiculo
      *
      * @var boolean
      */
-    private $enAlquiler;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     *
-     * @var boolean
-     */
     private $enReparacion;
 
     /**
@@ -288,30 +281,6 @@ class Vehiculo
     public function getPrecioDia()
     {
         return $this->precioDia;
-    }
-
-    /**
-     * Set enAlquiler
-     *
-     * @param boolean $enAlquiler
-     *
-     * @return Vehiculo
-     */
-    public function setEnAlquiler($enAlquiler)
-    {
-        $this->enAlquiler = $enAlquiler;
-
-        return $this;
-    }
-
-    /**
-     * Get enAlquiler
-     *
-     * @return boolean
-     */
-    public function getEnAlquiler()
-    {
-        return $this->enAlquiler;
     }
 
     /**

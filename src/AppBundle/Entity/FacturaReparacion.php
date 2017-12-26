@@ -33,7 +33,7 @@ class FacturaReparacion
     private $precio;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Usuario")
      * @var Usuario
      */
     private $mecanico;
@@ -43,6 +43,7 @@ class FacturaReparacion
      * @var Alquiler
      */
     private $alquiler;
+
 
 
     /**

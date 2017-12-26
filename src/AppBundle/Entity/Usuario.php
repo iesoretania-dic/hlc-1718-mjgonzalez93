@@ -103,6 +103,16 @@ class Usuario
 
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->facturaReparacion = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+
+    /**
      * Get id
      *
      * @return integer
