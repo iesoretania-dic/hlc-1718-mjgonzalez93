@@ -5,6 +5,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AlquilerRepository")
  * @ORM\Table(name="alquiler")
  */
 class Alquiler
