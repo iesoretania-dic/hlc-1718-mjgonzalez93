@@ -14,8 +14,8 @@ class DatosIniciales extends Fixture
             ["2548SDR", "Ferrari", "F40", "Coche", "300", "Sin Plomo 95", "Calle Sin Nombre 25", "150", false],
             ["4872RFP", "Mercedes", "Clase A", "Coche", "200", "Sin Plomo 95", "Calle Sin Nombre 25", "100", false],
             ["0003MGP", "Aprilia", "RS-GP", "Moto", "1000", "Sin Plomo 98", "Calle Falsa 123", "300", false],
+            ["9857SRS", "Ford", "E 450", "Bus", "200", "Sin Plomo 98", "Calle Falsa 123", "60", false],
             ["5874DRW", "Olbap", "TR6", "Barco", "400", "Diesel", "Muelle de San Blas nº18", "500", false]
-
         ];
 
         foreach ($vehiculos as $coche) {
