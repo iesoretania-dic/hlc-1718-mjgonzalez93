@@ -26,4 +26,14 @@ class VehiculoRepository extends EntityRepository
 
     }
 
+    public function categoriaVehiculo($categoria)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.categoria = :categoria')
+            ->setParameter('categoria', $categoria)
+            ->getQuery()
+            ->getResult();
+
+    }
+
 }

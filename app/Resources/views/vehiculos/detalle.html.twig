@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-Detalle - {{ coches[0].matricula }}
+Detalle - {{ vehiculos[0].matricula }}
 {% endblock %}
 
 {% block content %}
@@ -9,17 +9,17 @@ Detalle - {{ coches[0].matricula }}
     <thead>
     <tr>
         <th class="col-sm-6">Matricula</th>
-        <th class="col-sm-6">{{ coches[0].matricula }}</th>
+        <th class="col-sm-6">{{ vehiculos[0].matricula }}</th>
     </tr>
     </thead>
     <tbody>
-        <tr><td>Marca</td><td>{{ coches[0].marca }}</td></tr>
-        <tr><td>Modelo</td><td>{{ coches[0].modelo }}</td></tr>
-        <tr><td>Cilindrada</td><td>{{ coches[0].cilindrada }} cc</td></tr>
-        <tr><td>Combustible</td><td>{{ coches[0].combustible }}</td></tr>
-        <tr><td>Direccion</td><td>{{ coches[0].direccionalmacenado }}</td></tr>
-        {% if app.user %}<tr><td>Precio por dia</td><td>{{ coches[0].preciodia }} €</td></tr>{% endif %}
-        <tr><td colspan="2" align="center"><img src="{{ '/imagenes/vehiculos/coche/' ~ coches[0].matricula ~'.jpg' }}"></td></tr>
+        <tr><td>Marca</td><td>{{ vehiculos[0].marca }}</td></tr>
+        <tr><td>Modelo</td><td>{{ vehiculos[0].modelo }}</td></tr>
+        <tr><td>Cilindrada</td><td>{{ vehiculos[0].cilindrada }} cc</td></tr>
+        <tr><td>Combustible</td><td>{{ vehiculos[0].combustible }}</td></tr>
+        <tr><td>Direccion</td><td>{{ vehiculos[0].direccionalmacenado }}</td></tr>
+        {% if app.user %}<tr><td>Precio por dia</td><td>{{ vehiculos[0].preciodia }} €</td></tr>{% endif %}
+        <tr><td colspan="2" align="center"><img src="{{ '/imagenes/vehiculos/' ~ vehiculos[0].categoria ~'/' ~ vehiculos[0].matricula ~'.jpg' }}"></td></tr>
     </tbody>
 </table>
     <input type="button" class="btn btn-info" OnClick="history.back()" value="Volver">

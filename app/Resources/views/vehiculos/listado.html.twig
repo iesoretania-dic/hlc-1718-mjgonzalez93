@@ -1,7 +1,13 @@
 {% extends 'layout.html.twig' %}
-{% block title %}Listado Coches{% endblock %}
+{% block title %}Listado vehiculos{% endblock %}
 {% block content %}
-    <h1>Listado de coches</h1>
+    {% if vehiculos %}
+    {% set ruta = app.request.get('_route') %}
+    {% if ruta == 'listado_categoria' %}
+        <h1>Listado de {{ vehiculos[0].categoria }}s</h1>
+    {% else %}
+        <h1>Listado de vehiculos</h1>
+    {% endif %}
     <table class="table table-responsive table-bordered table-striped table-hover">
         <thead>
         <tr>
@@ -17,19 +23,22 @@
         </tr>
         </thead>
         <tbody>
-        {% for coche in coches %}
+        {% for vehiculo in vehiculos %}
             <tr>
-                <td><a href="{{ path('detalle_coche', {'matricula': coche.matricula}) }}">{{ coche.matricula }}</a></td>
-                <td>{{ coche.marca }} {{ coche.modelo }}</td>
-                <td>{{ coche.categoria }}</td>
-                <td>{{ coche.cilindrada }} cc</td>
-                <td>{{ coche.combustible }}</td>
-                <td>{{ coche.direccionAlmacenado }}</td>
+                <td><a href="{{ path('detalle_vehiculo', {'matricula': vehiculo.matricula}) }}">{{ vehiculo.matricula }}</a></td>
+                <td>{{ vehiculo.marca }} {{ vehiculo.modelo }}</td>
+                <td>{{ vehiculo.categoria }}</td>
+                <td>{{ vehiculo.cilindrada }} cc</td>
+                <td>{{ vehiculo.combustible }}</td>
+                <td>{{ vehiculo.direccionAlmacenado }}</td>
                 {% if app.user %}
-                    <td>{{ coche.direccionAlmacenado }}</td>
+                    <td>{{ vehiculo.direccionAlmacenado }}</td>
                 {% endif %}
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        <h2>No hay vehiculos en esa categoria</h2>
+    {% endif %}
 {% endblock %}
