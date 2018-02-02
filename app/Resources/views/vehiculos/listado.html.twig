@@ -33,9 +33,10 @@
                 <td>{{ vehiculo.combustible }}</td>
                 <td>{{ vehiculo.direccionAlmacenado }}</td>
                 {% if app.user %}
-                    <td>{{ vehiculo.preciodia }}</td>
-                    <td></td>
+                    <td>{{ vehiculo.preciodia }} €</td>
                 {% endif %}
+                    <td><a href="{{ path('edicion_vehiculos', {'id': vehiculo.id}) }}" class="btn btn-xs btn-info col-sm-6" title="Modificar"><i class="fa fa-pencil"></i></a></td>
+
             </tr>
         {% endfor %}
         </tbody>
