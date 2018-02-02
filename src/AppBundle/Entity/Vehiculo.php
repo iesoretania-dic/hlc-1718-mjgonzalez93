@@ -82,6 +82,12 @@ class Vehiculo
      */
     private $enReparacion;
 
+    public function __toString()
+    {
+        return $this->getMatricula().' - '.$this->getMarca().' '.$this->getModelo().' '.$this->getPrecioDia().'€';
+    }
+
+
     /**
      * Get id
      *

@@ -45,6 +45,13 @@ class Alquiler
      *
      * @var boolean
      */
+    private $rechazado;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     *
+     * @var boolean
+     */
     private $devuelto;
 
     /**
@@ -65,6 +72,8 @@ class Alquiler
      * @var Usuario
      */
     private $usuario;
+
+
 
     /**
      * Get id
@@ -146,6 +155,30 @@ class Alquiler
     public function getAlquilado()
     {
         return $this->alquilado;
+    }
+
+    /**
+     * Set rechazado
+     *
+     * @param boolean $rechazado
+     *
+     * @return Alquiler
+     */
+    public function setRechazado($rechazado)
+    {
+        $this->rechazado = $rechazado;
+
+        return $this;
+    }
+
+    /**
+     * Get rechazado
+     *
+     * @return boolean
+     */
+    public function getRechazado()
+    {
+        return $this->rechazado;
     }
 
     /**
