@@ -25,7 +25,7 @@ class VehiculoController extends Controller
     }
 
     /**
-     * @Route("/vehiculos/{matricula}", name="detalle_vehiculo")
+     * @Route("/vehiculo/{matricula}", name="detalle_vehiculo")
      */
     public function detalleVehiculoAction($matricula)
     {
@@ -51,8 +51,8 @@ class VehiculoController extends Controller
     }
 
     /**
-     * @Route("/vehiculo/nuevo", name="nuevo_vehiculo")
-     * @Route("/vehiculo/editar/{id}", name="edicion_vehiculos")
+     * @Route("/nuevo/vehiculo", name="nuevo_vehiculo")
+     * @Route("/editar/vehiculo/{id}", name="edicion_vehiculos")
      */
     public function formularioVehiculosAction(Request $request, Vehiculo $matricula = null)
     {

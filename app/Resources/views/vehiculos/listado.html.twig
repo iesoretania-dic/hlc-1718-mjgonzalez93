@@ -1,6 +1,7 @@
 {% extends 'layout.html.twig' %}
 {% block title %}Listado vehiculos{% endblock %}
 {% block content %}
+    <a href="{{ path('nuevo_vehiculo') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo vehiculo</a>
     {% if vehiculos %}
     {% set ruta = app.request.get('_route') %}
     {% if ruta == 'listado_categoria' %}
