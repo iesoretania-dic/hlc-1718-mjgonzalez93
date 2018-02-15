@@ -20,9 +20,9 @@ class Alquiler
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=9, unique=true)
+     * @ORM\Column(type="integer", length=2)
      *
-     * @var string
+     * @var integer
      */
     private $dias;
 

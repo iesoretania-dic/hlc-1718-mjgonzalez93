@@ -53,10 +53,10 @@ class AlquilerController extends Controller
                 $alquiler->setPrecioTotal($precioTotal);
                 $em->flush();
                 $this->addFlash('exito', 'Solicitud realizada correctamente ' );
-                return $this->redirectToRoute('listado_vehiculos');
+                return $this->redirectToRoute('listado_alquiler');
             }
             catch (\Exception $e) {
-                $this->addFlash('error', 'No se han podido guardar los cambios ' );
+                $this->addFlash('error', 'No se han podido guardar los cambios ');
             }
         }
 
@@ -75,7 +75,7 @@ class AlquilerController extends Controller
         $em = $this->getDoctrine()->getManager();
         $nuevo = false;
 
-        $form = $this->createForm(VehiculoType::class, $id,['nuevo' => $nuevo]);
+        $form = $this->createForm(AlquilerType::class, $id,['nuevo' => $nuevo]);
 
         $form->handleRequest($request);
 
@@ -83,7 +83,7 @@ class AlquilerController extends Controller
             try {
                 $em->flush();
                 $this->addFlash('exito', 'Cambios guardados correctamente ' );
-                return $this->redirectToRoute('listado_vehiculos');
+                return $this->redirectToRoute('listado_alquiler');
             }
             catch (\Exception $e) {
                 $this->addFlash('error', 'No se han podido guardar los cambios ' );
