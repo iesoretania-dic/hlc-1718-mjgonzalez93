@@ -20,8 +20,8 @@
             <th class="col-sm-3">Direccion</th>
             {% if app.user %}
                 <th class="col-sm-1">Precio por dia</th>
-                <th class="col-sm-1"></th>
             {% endif %}
+            <th class="col-sm-1">Accion</th>
         </tr>
         </thead>
         <tbody>
@@ -36,8 +36,8 @@
                 {% if app.user %}
                     <td>{{ vehiculo.preciodia }} €</td>
                 {% endif %}
-                    <td><a href="{{ path('edicion_vehiculos', {'id': vehiculo.id}) }}" class="btn btn-xs btn-info col-sm-6" title="Modificar"><i class="fa fa-pencil"></i></a></td>
-
+                <td><a href="{{ path('edicion_vehiculos', {'id': vehiculo.id}) }}" class="btn btn-xs btn-warning " title="Modificar"><i class="fa fa-pencil"></i></a>
+                <a href="{{ path('eliminar_vehiculo', {'id': vehiculo.id}) }}" class="btn btn-xs btn-danger " title="Eliminar"><i class="fa fa-trash"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>

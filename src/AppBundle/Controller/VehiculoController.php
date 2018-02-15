@@ -87,4 +87,37 @@ class VehiculoController extends Controller
 
     }
 
+    /**
+     * @Route("/eliminar/vehiculo/{id}", name="eliminar_vehiculo")
+     */
+    public function eliminarAction(Request $request, Vehiculo $vehiculo)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $alquiler = $em->createQueryBuilder()
+            ->select('a')
+            ->from('AppBundle:Alquiler', 'a')
+            ->where('a.vehiculo = :vehiculo')
+            ->setParameter('vehiculo', $vehiculo)
+            ->getQuery()
+            ->getResult();
+
+        if ($request->isMethod('POST')) {
+            try {
+                foreach ($alquiler as $alquilado) {
+                    $em->remove($alquilado);
+                };
+                $em->remove($vehiculo);
+                $em->flush();
+                return $this->redirectToRoute('listado_vehiculos');
+            }
+            catch (\Exception $e) {
+                $this->addFlash('error', 'No se ha podido eliminar el vehiculo ');
+            }
+        }
+
+        return $this->render('vehiculos/eliminar.html.twig', [
+            'vehiculo' => $vehiculo
+        ]);
+    }
 }

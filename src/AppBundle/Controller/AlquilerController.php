@@ -53,7 +53,7 @@ class AlquilerController extends Controller
     }
 
     /**
-     * @Route("/alquiler/editar/{id}", name="edicion_vehiculos")
+     * @Route("/alquiler/editar/{id}", name="edicion_alquiler")
      */
     public function alquilerEditarAction(Request $request, Alquiler $id)
     {
