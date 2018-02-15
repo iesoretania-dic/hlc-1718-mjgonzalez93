@@ -97,4 +97,26 @@ class AlquilerController extends Controller
 
     }
 
+    /**
+     * @Route("/eliminar/alquiler/{id}", name="eliminar_alquiler")
+     */
+    public function eliminarAlquilerAction(Request $request, Alquiler $alquiler)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        if ($request->isMethod('POST')) {
+            try {
+                $em->remove($alquiler);
+                $em->flush();
+                return $this->redirectToRoute('listado_alquiler');
+            }
+            catch (\Exception $e) {
+                $this->addFlash('error', 'No se ha podido eliminar el vehiculo ');
+            }
+        }
+
+        return $this->render('alquiler/eliminar.html.twig', [
+            'alquiler' => $alquiler
+        ]);
+    }
 }
