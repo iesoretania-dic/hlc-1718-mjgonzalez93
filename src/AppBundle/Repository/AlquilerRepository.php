@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class AlquilerRepository extends EntityRepository
 {
+    public function listadoAlquiler()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.id')
+            ->getQuery()
+            ->getResult();
+    }
+
 }

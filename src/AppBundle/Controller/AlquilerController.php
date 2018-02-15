@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Alquiler;
 use AppBundle\Form\Type\AlquilerType;
 use AppBundle\Form\Type\VehiculoType;
+use AppBundle\Repository\AlquilerRepository;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,6 +13,20 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AlquilerController extends Controller
 {
+    /**
+     * @Route("/alquileres", name="listado_alquiler")
+     */
+    public function listarAlquilerAction(Request $request)
+    {
+
+        $alquiler = $this->getDoctrine()->getRepository('AppBundle:Alquiler')->listadoAlquiler();
+
+        return $this->render('alquiler/listado.html.twig', [
+            'alquiler' => $alquiler,
+        ]);
+
+    }
+
     /**
      * @Route("/alquiler/nuevo", name="nuevo_alquiler")
      */

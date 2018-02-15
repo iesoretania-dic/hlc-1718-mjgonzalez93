@@ -1,0 +1,34 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Listado alquileres{% endblock %}
+{% block content %}
+    <a href="{{ path('nuevo_alquiler') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo alquiler</a>
+    {% if alquiler %}
+        <h1>Listado de alquileres</h1>
+        <table class="table table-responsive table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th class="col-sm-2">Usuario</th>
+                <th class="col-sm-2">Coche</th>
+                <th class="col-sm-1">Dias</th>
+                <th class="col-sm-1">Precio total</th>
+                <th class="col-sm-1">Estado</th>
+                <th class="col-sm-1">Accion</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in alquiler %}
+                <tr>
+                    <td>{{ item.usuario }}</td>
+                    <td>{{ item.vehiculo }}</td>
+                    <td>{{ item.dias }}</td>
+                    <td>{{ item.precioTotal }} €</td>
+                    <td>{% if item.alquilado %}<i class="fa fa-check"></i>Aceptado {% if item.devuelto %}<i class="fa fa-car"></i>Devuelto {% endif %}{% if item.paraReparar %}<i class="fa fa-wrench"></i>Reparacion {% endif %}{% elseif item.rechazado %}<i class="fa fa-times">Rechazado{% else %}<i class="fa fa-laptop">Pendiente{% endif %}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h2>No hay alquileres que mostrar</h2>
+    {% endif %}
+{% endblock %}

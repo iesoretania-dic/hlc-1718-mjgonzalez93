@@ -29,6 +29,7 @@
                                 <li><a href="{{ path('listado_categoria', {'categoria': 'bus'}) }}"><i class="fa fa-bus"></i> Autobuses</a></li>
                             </ul>
                         </li>
+                        <li{% if ruta == 'listado_alquiler' %} class="active"{% endif %}><a href="{{ path('listado_alquiler') }}"><i class="fa fa-dollar"></i> Alquileres</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         {% if app.user %}
