@@ -1,7 +1,11 @@
 {% extends 'layout.html.twig' %}
-
+{% set ruta = app.request.get('_route') %}
 {% block title %}
-
+    {% if ruta == 'nuevo_vehiculo' %}
+        Nuevo vehiculo
+    {% elseif ruta == 'edicion_vehiculos' %}
+        Editar {{ matricula.matricula }}
+    {% endif %}
 {% endblock %}
 
 {% block content %}
