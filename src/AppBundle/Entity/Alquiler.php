@@ -3,6 +3,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AlquilerRepository")
@@ -20,7 +21,14 @@ class Alquiler
     private $id;
 
     /**
-     * @ORM\Column(type="integer", length=2)
+     * @ORM\Column(type="integer")
+     *
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 10,
+     *      minMessage = "Como mínimo se tiene que alquilar para {{ limit }} día",
+     *      maxMessage = "Como máximo se puede alquilar {{ limit }} días"
+     * )
      *
      * @var integer
      */

@@ -3,6 +3,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UsuarioRepository")
@@ -36,12 +37,16 @@ class Usuario
     /**
      * @ORM\Column(type="string")
      *
+     * @Assert\NotBlank()
+     *
      * @var string
      */
     private $nombre;
 
     /**
      * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank()
      *
      * @var string
      */
@@ -55,6 +60,10 @@ class Usuario
     private $direccion;
     /**
      * @ORM\Column(type="string")
+     *
+     * @Assert\Email(
+     *     message = "'{{ value }}' - Esta direccion de email no es valida.",
+     * )
      *
      * @var string
      */
