@@ -29,7 +29,12 @@
                                 <li><a href="{{ path('listado_categoria', {'categoria': 'bus'}) }}"><i class="fa fa-bus"></i> Autobuses</a></li>
                             </ul>
                         </li>
+                        {% if app.user %}
                         <li{% if ruta == 'listado_alquiler' %} class="active"{% endif %}><a href="{{ path('listado_alquiler') }}"><i class="fa fa-dollar"></i> Alquileres</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li{% if ruta == 'listar_usuarios' %} class="active"{% endif %}><a href="{{ path('listar_usuarios') }}"><i class="fa fa-th-list"></i> Usuarios</a></li>
+                        {% endif %}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         {% if app.user %}

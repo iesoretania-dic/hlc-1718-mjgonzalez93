@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Listado usuarios{% endblock %}
+{% block content %}
+    <table class="table table-responsive table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th class="col-sm-1">DNI</th>
+            <th class="col-sm-2">Nombre</th>
+            <th class="col-sm-2">Apellidos</th>
+            <th class="col-sm-2">Direccion</th>
+            <th class="col-sm-2">Email</th>
+            <th class="col-sm-1">Saldo</th>
+            <th class="col-sm-1">Rol</th>
+            <th class="col-sm-1">Accion</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.dni }}</td>
+                <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.apellidos }}</td>
+                <td>{{ usuario.direccion }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.saldo }} €</td>
+                <td>{% if usuario.administrador %}Admin{% elseif usuario.comercial %}Comercial
+                    {% elseif usuario.mecanico %}Mecanico{% elseif usuario.cliente %}Cliente{% endif %}</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

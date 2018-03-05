@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class UsuarioRepository extends EntityRepository
 {
+    public function listadoUsuarios()
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.dni', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 }

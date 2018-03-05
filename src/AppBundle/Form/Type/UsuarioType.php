@@ -22,44 +22,26 @@ class UsuarioType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('dni', null, [
-                'label' => 'DNI',
-                'disabled' => ($options['admin'] === false)
-            ])
-            ->add('nombre', null,[
-                'label' => 'Nombre',
-            ])
-            ->add('apellidos', null,[
-                'label' => 'Apellidos',
-            ])
-            ->add('direccion', null,[
-                'label' => 'Direccion',
-            ])
-            ->add('email', null,[
-                'label' => 'Email',
-            ]);
-            if(true === $options['cambiar_password']) {
-                $builder
-                    ->add('antigua', PasswordType::class, [
-                        'label' => 'Antigua contraseña',
-                        'mapped' => false,
-                        'constraints' => [
-                            new UserPassword()
-                        ]
-                    ])
-                    ->add('nueva', RepeatedType::class, [
-                        'mapped' => false,
-                        'type' => PasswordType::class,
-                        'first_options' => [
-                            'label' => 'Nueva contraseña',
-                        ],
-                        'second_options' => [
-                            'label' => 'Repita nueva contraseña'
-                        ]
-                    ]);
-            }
-            if(true === $options['admin']) {
+        if (true === $options['modificar_perfil']) {
+            $builder
+                ->add('dni', null, [
+                    'label' => 'DNI',
+                    'disabled' => ($options['admin'] === false)
+                ])
+                ->add('nombre', null, [
+                    'label' => 'Nombre',
+                ])
+                ->add('apellidos', null, [
+                    'label' => 'Apellidos',
+                ])
+                ->add('direccion', null, [
+                    'label' => 'Direccion',
+                ])
+                ->add('email', null, [
+                    'label' => 'Email',
+                ]);
+
+            if (true === $options['admin']) {
                 $builder
                     ->add('comercial', null, [
                         'label' => 'Comercial'
@@ -68,6 +50,32 @@ class UsuarioType extends AbstractType
                         'label' => 'Mecanico'
                     ]);
             }
+        }
+
+        if (true === $options['cambiar_password']) {
+            if (false === $options['admin']) {
+                $builder
+                    ->add('antigua', PasswordType::class, [
+                        'label' => 'Antigua contraseña',
+                        'mapped' => false,
+                        'constraints' => [
+                            new UserPassword()
+                        ]
+                    ]);
+            }
+                $builder
+                ->add('nueva', RepeatedType::class, [
+                    'mapped' => false,
+                    'type' => PasswordType::class,
+                    'first_options' => [
+                        'label' => 'Nueva contraseña',
+                    ],
+                    'second_options' => [
+                        'label' => 'Repita nueva contraseña'
+                    ]
+                ]);
+        }
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -75,6 +83,7 @@ class UsuarioType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Usuario::class,
             'admin' => false,
+            'modificar_perfil' => false,
             'cambiar_password' => false
         ]);
     }

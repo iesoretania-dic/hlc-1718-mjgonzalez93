@@ -44,7 +44,8 @@ class LoginController extends Controller
         $usuario = $this->getUser();
 
         $form = $this->createForm(UsuarioType::class, $usuario, [
-            'admin' => $this->isGranted('ROLE_ADMIN')
+            'admin' => $this->isGranted('ROLE_ADMIN'),
+            'modificar_perfil' => true
         ]);
 
         $form->handleRequest($request);
@@ -64,7 +65,7 @@ class LoginController extends Controller
     }
 
     /**
-     * @Route("/perfil/cambiarpass", name="cambiar_password")
+     * @Route("/perfil/clave", name="cambiar_password")
      */
     public function cambiarPasswordAction(Request $request) {
 
