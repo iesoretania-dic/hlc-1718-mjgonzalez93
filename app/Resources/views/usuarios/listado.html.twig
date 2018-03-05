@@ -11,7 +11,7 @@
             <th class="col-sm-2">Email</th>
             <th class="col-sm-1">Saldo</th>
             <th class="col-sm-1">Rol</th>
-            <th class="col-sm-1">Accion</th>
+            <th class="col-sm-1">Modificar contraseña</th>
         </tr>
         </thead>
         <tbody>
@@ -25,7 +25,9 @@
                 <td>{{ usuario.saldo }} €</td>
                 <td>{% if usuario.administrador %}Admin{% elseif usuario.comercial %}Comercial
                     {% elseif usuario.mecanico %}Mecanico{% elseif usuario.cliente %}Cliente{% endif %}</td>
-                <td></td>
+                <td>
+                    <a href="{{ path('cambiar_password_admin', {'id': usuario.id}) }}" class="btn btn-xs btn-warning " title="Modificar"><i class="fa fa-pencil"></i></a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
