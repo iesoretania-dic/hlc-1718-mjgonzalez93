@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Listado reparaciones{% endblock %}
+{% block content %}
+    <a href="#" class="btn btn-success"><i class="fa fa-plus"></i> Nueva factura</a>
+    {% if reparaciones %}
+        <h1>Listado de reparaciones</h1>
+        <table class="table table-responsive table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th class="col-sm-2">Mecanico</th>
+                <th class="col-sm-1">ID Alquiler</th>
+                <th class="col-sm-2">Usuario</th>
+                <th class="col-sm-5">Descripcion</th>
+                <th class="col-sm-1">Precio</th>
+                <th class="col-sm-1">Acción</th>
+          </tr>
+            </thead>
+            <tbody>
+            {% for factura in reparaciones %}
+                <tr>
+                    <td>{{ factura.mecanico }}</td>
+                    <td>{{ factura.alquiler.id }}</td>
+                    <td>{{ factura.alquiler.usuario }}</td>
+                    <td>{{ factura.descripcion }}</td>
+                    <td>{{ factura.precio }} €</td>
+                    <td><a href="#" class="btn btn-xs btn-warning " title="Modificar"><i class="fa fa-pencil"></i></a>
+                    <a href="#" class="btn btn-xs btn-danger " title="Eliminar"><i class="fa fa-trash"></i></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h2>No hay reparaciones que mostrar</h2>
+    {% endif %}
+{% endblock %}

@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class FacturaReparacionRepository extends EntityRepository
 {
+    public function listadoReparaciones()
+    {
+        return $this->createQueryBuilder('f')
+            ->addSelect('a')
+            ->addSelect('m')
+            ->addSelect('u')
+            ->leftJoin('f.alquiler', 'a')
+            ->leftJoin('f.mecanico', 'm')
+            ->leftJoin('a.usuario', 'u')
+            ->orderBy('f.id')
+            ->getQuery()
+            ->getResult();
+    }
 }
