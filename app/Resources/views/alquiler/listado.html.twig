@@ -12,7 +12,9 @@
                 <th class="col-sm-1">Dias</th>
                 <th class="col-sm-1">Precio total</th>
                 <th class="col-sm-1">Estado</th>
-                <th class="col-sm-1">Accion</th>
+                {% if is_granted('ROLE_COMERCIAL') %}
+                    <th class="col-sm-1">Accion</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -23,8 +25,10 @@
                     <td>{{ item.dias }}</td>
                     <td>{{ item.precioTotal }} €</td>
                     <td>{% if item.alquilado %}<i class="fa fa-check"></i>Aceptado {% if item.devuelto %}<i class="fa fa-car"></i>Devuelto {% endif %}{% if item.paraReparar %}<i class="fa fa-wrench"></i>Reparacion {% endif %}{% elseif item.rechazado %}<i class="fa fa-times">Rechazado{% else %}<i class="fa fa-laptop">Pendiente{% endif %}</td>
-                    <td><a href="{{ path('edicion_alquiler', {'id': item.id}) }}" class="btn btn-xs btn-warning " title="Modificar"><i class="fa fa-pencil"></i></a>
+                    {% if is_granted('ROLE_COMERCIAL') %}
+                        <td><a href="{{ path('edicion_alquiler', {'id': item.id}) }}" class="btn btn-xs btn-warning " title="Modificar"><i class="fa fa-pencil"></i></a>
                         <a href="{{ path('eliminar_alquiler', {'id': item.id}) }}" class="btn btn-xs btn-danger " title="Eliminar"><i class="fa fa-trash"></i></a></td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>

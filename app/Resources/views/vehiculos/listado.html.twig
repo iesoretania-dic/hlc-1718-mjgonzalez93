@@ -1,7 +1,9 @@
 {% extends 'layout.html.twig' %}
 {% block title %}Listado vehiculos{% endblock %}
 {% block content %}
-    <a href="{{ path('nuevo_vehiculo') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo vehiculo</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('nuevo_vehiculo') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo vehiculo</a>
+    {% endif %}
     {% if vehiculos %}
     {% set ruta = app.request.get('_route') %}
     {% if ruta == 'listado_categoria' %}
@@ -21,7 +23,9 @@
             {% if app.user %}
                 <th class="col-sm-1">Precio por dia</th>
             {% endif %}
-            <th class="col-sm-1">Accion</th>
+            {% if is_granted('ROLE_ADMIN') %}
+                <th class="col-sm-1">Accion</th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
@@ -36,8 +40,10 @@
                 {% if app.user %}
                     <td>{{ vehiculo.preciodia }} €</td>
                 {% endif %}
-                <td><a href="{{ path('edicion_vehiculos', {'id': vehiculo.id}) }}" class="btn btn-xs btn-warning " title="Modificar"><i class="fa fa-pencil"></i></a>
-                <a href="{{ path('eliminar_vehiculo', {'id': vehiculo.id}) }}" class="btn btn-xs btn-danger " title="Eliminar"><i class="fa fa-trash"></i></a></td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td><a href="{{ path('edicion_vehiculos', {'id': vehiculo.id}) }}" class="btn btn-xs btn-warning " title="Modificar"><i class="fa fa-pencil"></i></a>
+                    <a href="{{ path('eliminar_vehiculo', {'id': vehiculo.id}) }}" class="btn btn-xs btn-danger " title="Eliminar"><i class="fa fa-trash"></i></a></td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>

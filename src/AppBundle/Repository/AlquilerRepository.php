@@ -20,4 +20,13 @@ class AlquilerRepository extends EntityRepository
             ->getResult();
     }
 
+    public function listadoAlquilerCLiente($id)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.usuario = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

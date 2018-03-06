@@ -35,8 +35,9 @@ class UsuarioController extends Controller
     public function cambiarPasswordAction(Request $request, Usuario $id) {
 
         $usuario = $this->getDoctrine()->getRepository('AppBundle:Usuario')->usuarioPassword($id);
+        $usuario = $usuario[0];
 
-        $form = $this->createForm(UsuarioType::class, $usuario[0], [
+        $form = $this->createForm(UsuarioType::class, $usuario, [
             'admin' => $this->isGranted('ROLE_ADMIN'),
             'cambiar_password' => true
         ]);
@@ -49,9 +50,9 @@ class UsuarioController extends Controller
 
                 if ($claveFormulario) {
                     $clave = $this->get('security.password_encoder')
-                        ->encodePassword($usuario[0], $claveFormulario);
+                        ->encodePassword($usuario, $claveFormulario);
 
-                    $usuario[0]->setPassword($clave);
+                    $usuario->setPassword($clave);
                 }
 
                 $this->getDoctrine()->getManager()->flush();

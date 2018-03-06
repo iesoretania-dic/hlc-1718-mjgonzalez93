@@ -6,6 +6,7 @@ use AppBundle\Entity\Vehiculo;
 use AppBundle\Form\Type\VehiculoType;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -53,6 +54,7 @@ class VehiculoController extends Controller
     /**
      * @Route("/nuevo/vehiculo", name="nuevo_vehiculo")
      * @Route("/editar/vehiculo/{id}", name="edicion_vehiculos")
+     * @Security("is_granted('RROLE_ADMIN')")
      */
     public function formularioVehiculosAction(Request $request, Vehiculo $matricula = null)
     {
@@ -89,6 +91,7 @@ class VehiculoController extends Controller
 
     /**
      * @Route("/eliminar/vehiculo/{id}", name="eliminar_vehiculo")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function eliminarAction(Request $request, Vehiculo $vehiculo)
     {
