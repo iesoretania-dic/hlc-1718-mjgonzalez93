@@ -1,7 +1,12 @@
 {% extends 'layout.html.twig' %}
 {% block title %}Listado alquileres{% endblock %}
 {% block content %}
-    <a href="{{ path('nuevo_alquiler') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo alquiler</a>
+    {% if app.user.saldo > 0 %}
+        <a href="{{ path('nuevo_alquiler') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo alquiler</a>
+    {% else %}
+        <div class="alert-danger">No puede alquilar mientras su saldo sea negativo</div>
+    {% endif %}
+
     {% if alquiler %}
         <h1>Listado de alquileres</h1>
         <table class="table table-responsive table-bordered table-striped table-hover">

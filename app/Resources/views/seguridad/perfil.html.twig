@@ -1,5 +1,6 @@
 {% extends 'layout.html.twig' %}
-
+{% set ruta = app.request.get('_route') %}
+{% block title %}{% if ruta == "perfil" %}Modificar perfil{% elseif ruta == "cambiar_password" %}Cambiar contraseña{% endif %}{% endblock %}
 {% block content %}
     {{ form_start(form) }}
     {{ form_widget(form) }}
