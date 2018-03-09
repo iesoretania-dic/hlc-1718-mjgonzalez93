@@ -54,7 +54,7 @@ class VehiculoController extends Controller
     /**
      * @Route("/nuevo/vehiculo", name="nuevo_vehiculo")
      * @Route("/editar/vehiculo/{id}", name="edicion_vehiculos")
-     * @Security("is_granted('RROLE_ADMIN')")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function formularioVehiculosAction(Request $request, Vehiculo $matricula = null)
     {

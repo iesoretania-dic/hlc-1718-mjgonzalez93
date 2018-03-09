@@ -81,7 +81,10 @@ class Alquiler
      */
     private $usuario;
 
-
+    public function __toString()
+    {
+        return $this->getId().' - '.$this->getVehiculo();
+    }
 
     /**
      * Get id
