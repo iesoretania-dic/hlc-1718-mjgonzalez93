@@ -31,7 +31,9 @@
                     <td>{{ item.precioTotal }} €</td>
                     <td>{% if item.alquilado %}<i class="fa fa-check"></i>Aceptado {% if item.devuelto %}<i class="fa fa-car"></i>Devuelto {% endif %}{% if item.paraReparar %}<i class="fa fa-wrench"></i>Reparacion {% endif %}{% elseif item.rechazado %}<i class="fa fa-times">Rechazado{% else %}<i class="fa fa-laptop">Pendiente{% endif %}</td>
                     {% if is_granted('ROLE_COMERCIAL') %}
-                        <td><a href="{{ path('edicion_alquiler', {'id': item.id}) }}" class="btn btn-xs btn-warning " title="Modificar"><i class="fa fa-pencil"></i></a>
+                        <td>{% if not item.alquilado and not item.rechazado %}<a href="{{ path('resolucion_alquiler', {'id': item.id, 'accion': 'aceptado'}) }}" class="btn btn-xs btn-success " title="Aceptar"><i class="fa fa-check"></i></a>
+                        <a href="{{ path('resolucion_alquiler', {'id': item.id, 'accion': 'rechazado'}) }}" class="btn btn-xs btn-danger " title="Rechazar"><i class="fa fa-times"></i></a>{% endif %}
+                        <a href="{{ path('edicion_alquiler', {'id': item.id}) }}" class="btn btn-xs btn-warning " title="Modificar"><i class="fa fa-pencil"></i></a>
                         <a href="{{ path('eliminar_alquiler', {'id': item.id}) }}" class="btn btn-xs btn-danger " title="Eliminar"><i class="fa fa-trash"></i></a></td>
                     {% endif %}
                 </tr>

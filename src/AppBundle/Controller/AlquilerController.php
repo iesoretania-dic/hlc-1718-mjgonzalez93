@@ -53,11 +53,17 @@ class AlquilerController extends Controller
                 $precioDia = $vehiculo->getPrecioDia();
                 $precioTotal = $dias * $precioDia;
                 $usuario = $this->getUser();
-                $alquiler->setUsuario($usuario);
-                $alquiler->setPrecioTotal($precioTotal);
-                $em->flush();
-                $this->addFlash('exito', 'Solicitud realizada correctamente ' );
-                return $this->redirectToRoute('listado_alquiler');
+                $saldo = $usuario->getSaldo();
+                if($saldo<$precioTotal){
+                    $this->addFlash('error', 'No tiene suficiente saldo para realizar el alquiler ' );
+                    return $this->redirectToRoute('listado_alquiler');
+                }else {
+                    $alquiler->setUsuario($usuario);
+                    $alquiler->setPrecioTotal($precioTotal);
+                    $em->flush();
+                    $this->addFlash('exito', 'Solicitud realizada correctamente ');
+                    return $this->redirectToRoute('listado_alquiler');
+                }
             }
             catch (\Exception $e) {
                 $this->addFlash('error', 'No se han podido guardar los cambios ');
@@ -100,6 +106,37 @@ class AlquilerController extends Controller
             'formulario' => $form->createView()
         ]);
 
+    }
+
+    /**
+     * @Route("/alquiler/resolucion/{id}-{accion}", name="resolucion_alquiler")
+     * @Security("is_granted('ROLE_COMERCIAL')")
+     */
+    public function alquilerResolucionAction(Request $request, Alquiler $id, $accion)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var Alquiler|null $alquiler */
+        $alquiler = $this->getDoctrine()->getRepository('AppBundle:Alquiler')->find($id);
+
+        try {
+            if($accion == "aceptado"){
+                $alquiler->setAlquilado(true);
+                $usuario = $alquiler->getUsuario();
+                $saldo = $usuario->getSaldo();
+                $precio = $alquiler->getprecioTotal();
+                $usuario->setSaldo($saldo - $precio);
+            }elseif($accion = "rechazado"){
+                $alquiler->setRechazado(true);
+            }
+
+            $em->flush();
+            $this->addFlash('exito', 'Cambios guardados correctamente ' );
+        }
+        catch (\Exception $e) {
+            $this->addFlash('error', 'No se han podido guardar los cambios ' );
+        }
+        return $this->redirectToRoute('listado_alquiler');
     }
 
     /**

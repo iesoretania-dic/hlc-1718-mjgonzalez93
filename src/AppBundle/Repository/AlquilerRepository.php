@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Alquiler;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -28,5 +29,16 @@ class AlquilerRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function detalleAlquiler($id)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleResult();
+    }
+
+
 
 }
